@@ -4,7 +4,7 @@
 [![codecov.io](https://codecov.io/github/parse-server-modules/parse-server-s3-adapter/coverage.svg?branch=master)](https://codecov.io/github/parse-server-modules/parse-server-s3-adapter?branch=master)
 [![Build Status](https://travis-ci.org/parse-server-modules/parse-server-s3-adapter.svg?branch=master)](https://travis-ci.org/parse-server-modules/parse-server-s3-adapter)
 
-parse-server adapter for AWS S3
+parse-server adapter for AWS S3 and OSS 
 
 # installation
 
@@ -112,7 +112,7 @@ In this form if you set `s3overrides.params`, you must set at least `s3overrides
 or with an options hash
 
 ```
-var S3Adapter = require('parse-server-s3-adapter');
+var OSS_S3Adapter = require('parse-server-oss-s3-adapter');
 
 var s3Options = {
   "bucket": "my_bucket",
@@ -127,11 +127,25 @@ var s3Options = {
   "globalCacheControl": null // default value. Or 'public, max-age=86400' for 24 hrs Cache-Control
 }
 
-var s3Adapter = new S3Adapter(s3Options);
+var ossOptions = {
+  "accessKey": "accessKey",
+  "secretKey": "secretKey",
+  "bucket": "my_bucket",
+  // optional:
+  "region": 'oss-cn-hangzhou', // default value
+  "bucketPrefix": '', // default value
+  "directAccess": false, // default value
+  "baseUrl": null // default value
+}
+
+var oss_S3Adapter = new OSS_S3Adapter({
+  "s3Options" : s3Options,
+  "ossOptions" : ossOptions
+});
 
 var api = new ParseServer({
   appId: 'my_app',
   masterKey: 'master_key',
-  filesAdapter: s3Adapter
+  filesAdapter: oss_S3Adapter
 })
 ```

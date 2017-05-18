@@ -1,10 +1,9 @@
 {
-  "name": "parse-server-s3-adapter",
-  "version": "1.0.6",
-  "description": "AWS S3 adapter for parse-server",
+  "name": "parse-server-oss-s3-adapter",
+  "version": "0.0.1",
+  "description": "AWS S3 and OSS mixed adapter for parse-server",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm run lint",
     "test": "NODE_ENV=test NODE_CONFIG_DIR=./spec/config istanbul cover -x **/spec/** jasmine --captureExceptions",
     "lint": "eslint --cache ./"
   },
@@ -24,7 +23,9 @@
   },
   "homepage": "https://github.com/parse-server-modules/parse-server-s3-adapter#readme",
   "dependencies": {
-    "aws-sdk": "^2.2.46"
+    "aws-sdk": "^2.2.46",
+    "parse-server-s3-adapter" : "^1.0.6",
+    "parse-server-oss-adapter": "^1.0.0"
   },
   "devDependencies": {
     "codecov": "^2.1.0",
